@@ -3,7 +3,6 @@ import { Menu, X, ArrowRight, Code, Database, Cloud, Users, Mail, Phone, MapPin,
 
 const Homepage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
   const services = [
     {
@@ -11,6 +10,7 @@ const Homepage = () => {
       title: "Software Development",
       description: "Custom software solutions tailored to your business needs with modern technologies and best practices."
     },
+    
     {
       icon: <Database className="w-8 h-8" />,
       title: "Research & Data Solutions",
@@ -25,16 +25,6 @@ const Homepage = () => {
       icon: <Users className="w-8 h-8" />,
       title: "IT Consulting",
       description: "Strategic technology consulting to optimize your digital transformation journey."
-    },
-    {
-      icon: <MapPin className="w-8 h-8" />,
-      title: "GIS & Mapping Solutions",
-      description: "Geographic Information Systems expertise for spatial data analysis and mapping solutions."
-    },
-    {
-      icon: <Database className="w-8 h-8" />,
-      title: "Digital Profile for Local Bodies",
-      description: "Comprehensive digital transformation solutions for local government bodies and municipalities."
     }
   ];
 
@@ -56,48 +46,34 @@ const Homepage = () => {
     }
   ];
 
-  const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-    alert('Message sent successfully!');
-    setFormData({ name: '', email: '', message: '' });
-  };
-
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="fixed top-0 w-full bg-white shadow-md z-50">
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <header className="bg-white shadow-sm sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex items-center">
-              
-              <span className="bg-gradient-to-r from-green-400 via-emerald-500 to-teal-500 
-text-transparent bg-clip-text font-bold animate-pulse">
-  Mirdaha Research & Technology
-</span>
-
+              <div className="text-2xl font-bold text-gray-900">
+                <span className="text-green-600">Mirdaha</span> Technology
+              </div>
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              <a href="#home" className="text-gray-700 hover:text-green-600 transition-colors">Home</a>
-              <a href="#about" className="text-gray-700 hover:text-green-600 transition-colors">About</a>
-              <a href="#services" className="text-gray-700 hover:text-green-600 transition-colors">Services</a>
-              <a href="#projects" className="text-gray-700 hover:text-green-600 transition-colors">Projects</a>
-              <a href="#contact" className="text-gray-700 hover:text-green-600 transition-colors">Contact</a>
-              <button className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
+            <nav className="hidden md:flex items-center space-x-8">
+              <a href="#home" className="text-gray-900 hover:text-green-600 font-medium transition-colors">Home</a>
+              <a href="#about" className="text-gray-700 hover:text-green-600 font-medium transition-colors">About</a>
+              <a href="#services" className="text-gray-700 hover:text-green-600 font-medium transition-colors">Services</a>
+              <a href="#projects" className="text-gray-700 hover:text-green-600 font-medium transition-colors">Projects</a>
+              <a href="#contact" className="text-gray-700 hover:text-green-600 font-medium transition-colors">Contact</a>
+              <button className="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors font-medium">
                 Get in Touch
               </button>
-            </div>
+            </nav>
 
             {/* Mobile menu button */}
             <button 
-              className="md:hidden p-2"
+              className="md:hidden text-gray-700"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -106,67 +82,68 @@ text-transparent bg-clip-text font-bold animate-pulse">
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden py-4 space-y-4">
-              <a href="#home" className="block text-gray-700 hover:text-green-600 transition-colors py-2">Home</a>
-              <a href="#about" className="block text-gray-700 hover:text-green-600 transition-colors py-2">About</a>
-              <a href="#services" className="block text-gray-700 hover:text-green-600 transition-colors py-2">Services</a>
-              <a href="#projects" className="block text-gray-700 hover:text-green-600 transition-colors py-2">Projects</a>
-              <a href="#contact" className="block text-gray-700 hover:text-green-600 transition-colors py-2">Contact</a>
-              <button className="w-full bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition-colors">
-                Get in Touch
-              </button>
+            <div className="md:hidden py-4 border-t">
+              <nav className="flex flex-col space-y-4">
+                <a href="#home" className="text-gray-900 font-medium">Home</a>
+                <a href="#about" className="text-gray-700 font-medium">About</a>
+                <a href="#services" className="text-gray-700 font-medium">Services</a>
+                <a href="#projects" className="text-gray-700 font-medium">Projects</a>
+                <a href="#contact" className="text-gray-700 font-medium">Contact</a>
+                <button className="bg-green-600 text-white px-6 py-2 rounded-lg w-fit font-medium">
+                  Get in Touch
+                </button>
+              </nav>
             </div>
           )}
-        </nav>
+        </div>
       </header>
 
       {/* Hero Section */}
-      <section className="min-h-screen pt-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-white">
-        <div className="max-w-7xl mx-auto py-12 lg:py-20">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left Content */}
-            <div className="text-center lg:text-left">
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+      <section id="home" className="bg-white py-20 lg:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
                 Innovating Technology for a{' '}
                 <span className="text-green-600">Smarter Nepal</span>
               </h1>
-              <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
-                At Mirdaha Technology, we bring research-driven tech solutions to empower businesses and communities across Nepal and beyond.
+              <p className="text-lg text-gray-600 mt-6 leading-relaxed">
+                At Mirdaha Technology, we bring research-driven tech solutions to empower 
+                businesses and communities across Nepal and beyond.
               </p>
-              <button className="bg-green-600 text-white px-8 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors inline-flex items-center gap-2">
+              <button className="mt-8 bg-green-600 text-white px-8 py-3 rounded-lg hover:bg-green-700 transition-colors font-medium flex items-center gap-2">
                 Explore Our Services
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
-
-            {/* Right Content - Service Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
-              <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="bg-green-600 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
-                  <Code className="w-7 h-7 text-white" />
+            <div className="relative">
+              <div className="bg-gradient-to-br from-green-100 to-green-200 rounded-3xl p-8 lg:p-12">
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="bg-white rounded-xl p-6 shadow-lg">
+                    <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
+                      <Code className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="font-semibold text-gray-900">Development</h3>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-lg mt-8">
+                    <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
+                      <Database className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="font-semibold text-gray-900">Research</h3>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-lg -mt-4">
+                    <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
+                      <Cloud className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="font-semibold text-gray-900">Cloud</h3>
+                  </div>
+                  <div className="bg-white rounded-xl p-6 shadow-lg mt-4">
+                    <div className="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
+                      <Users className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="font-semibold text-gray-900">Consulting</h3>
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Development</h3>
-              </div>
-              
-              <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow sm:mt-8">
-                <div className="bg-green-600 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
-                  <Database className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Research</h3>
-              </div>
-              
-              <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
-                <div className="bg-green-600 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
-                  <Cloud className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Cloud</h3>
-              </div>
-              
-              <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow sm:mt-8">
-                <div className="bg-green-600 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
-                  <Users className="w-7 h-7 text-white" />
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">Consulting</h3>
               </div>
             </div>
           </div>
@@ -174,29 +151,43 @@ text-transparent bg-clip-text font-bold animate-pulse">
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+      <section id="about" className="bg-gray-50 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
-              <div className="bg-green-600 w-full aspect-square rounded-2xl flex items-center justify-center">
-                <div className="text-center">
-                  <div className="text-6xl sm:text-8xl font-bold text-white mb-4">MT</div>
-                  <div className="text-xl sm:text-2xl text-white font-semibold">Nepal's Tech Innovation</div>
-                  <div className="text-base sm:text-lg text-green-100 mt-2">Empowering communities through technology</div>
+              <div className="bg-gradient-to-br from-green-600 to-green-700 rounded-3xl p-1">
+                <div className="bg-white rounded-3xl p-8 lg:p-12">
+                  <div className="text-center">
+                    <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
+                        <span className="text-white font-bold text-xl">MT</span>
+                      </div>
+                    </div>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Nepal's Tech Innovation</h3>
+                    <p className="text-gray-600">Empowering communities through technology</p>
+                  </div>
                 </div>
               </div>
             </div>
-            
             <div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">About Mirdaha Technology</h2>
-              <p className="text-xl sm:text-2xl text-green-600 font-semibold mb-6">
-                "Blending Research & Technology to Create Impactful Solutions."
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+                About Mirdaha Technology
+              </h2>
+              <p className="text-lg text-gray-600 mb-6 leading-relaxed">
+                <span className="text-green-600 font-semibold">
+                  "Blending Research & Technology to Create Impactful Solutions."
+                </span>
               </p>
-              <p className="text-base sm:text-lg text-gray-600 mb-6 leading-relaxed">
-                We are a forward-thinking technology company based in Nepal, dedicated to bridging the gap between cutting-edge research and practical technology solutions. Our team combines deep technical expertise with a thorough understanding of local and global market needs.
+              <p className="text-gray-600 mb-6 leading-relaxed">
+                We are a forward-thinking technology company based in Nepal, dedicated to 
+                bridging the gap between cutting-edge research and practical technology solutions. 
+                Our team combines deep technical expertise with a thorough understanding of 
+                local and global market needs.
               </p>
-              <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
-                From custom software development to advanced data analytics, we help businesses and organizations leverage technology to achieve their goals and make a meaningful impact in their communities.
+              <p className="text-gray-600 leading-relaxed">
+                From custom software development to advanced data analytics, we help 
+                businesses and organizations leverage technology to achieve their goals 
+                and make a meaningful impact in their communities.
               </p>
             </div>
           </div>
@@ -204,23 +195,32 @@ text-transparent bg-clip-text font-bold animate-pulse">
       </section>
 
       {/* Services Section */}
-      <section id="services" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Our Services</h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+      <section id="services" className="bg-white py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Our Services
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Comprehensive technology solutions designed to drive innovation and growth
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {services.map((service, index) => (
-              <div key={index} className="bg-gray-50 p-6 sm:p-8 rounded-xl hover:shadow-xl transition-shadow border border-gray-200">
-                <div className="bg-green-600 w-16 h-16 rounded-lg flex items-center justify-center mb-6 text-white">
+              <div 
+                key={index}
+                className="bg-white border border-gray-200 rounded-xl p-6 hover:border-green-300 hover:shadow-lg transition-all duration-300 group cursor-pointer"
+              >
+                <div className="text-green-600 group-hover:text-green-700 transition-colors mb-4">
                   {service.icon}
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {service.description}
+                </p>
               </div>
             ))}
           </div>
@@ -228,28 +228,40 @@ text-transparent bg-clip-text font-bold animate-pulse">
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Featured Projects</h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+      <section id="projects" className="bg-gray-50 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Featured Projects
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Showcasing our latest work and innovative solutions
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <div key={index} className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow border border-gray-200">
-                <img src={project.image} alt={project.title} className="w-full h-48 sm:h-56 object-cover" />
-                <div className="p-6">
-                  <div className="flex items-center gap-2 mb-3">
-                    <button className="text-green-600 hover:text-green-700 font-semibold text-sm sm:text-base">
-                      View Project
-                    </button>
-                    <ArrowRight className="w-4 h-4 text-green-600" />
+              <div 
+                key={index}
+                className="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group cursor-pointer"
+              >
+                <div className="relative h-48 bg-gradient-to-br from-green-100 to-green-200 overflow-hidden">
+                  <div className="absolute inset-0 bg-green-600 opacity-0 group-hover:opacity-90 transition-opacity duration-300 flex items-center justify-center">
+                    <span className="text-white font-semibold">View Project</span>
                   </div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">{project.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{project.description}</p>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-16 h-16 bg-green-600 rounded-lg flex items-center justify-center">
+                      <Code className="w-8 h-8 text-white" />
+                    </div>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-600">
+                    {project.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -258,55 +270,47 @@ text-transparent bg-clip-text font-bold animate-pulse">
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Get in Touch</h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto">
+      <section id="contact" className="bg-green-600 py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+              Get in Touch
+            </h2>
+            <p className="text-lg text-green-100 max-w-2xl mx-auto">
               Ready to start your next project? Let's discuss how we can help you achieve your goals.
             </p>
           </div>
           
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-            <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
+            <div className="bg-white rounded-xl p-8">
               <div className="space-y-6">
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Name</label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent"
-                    placeholder="Your name"
+                  <label className="block text-gray-700 font-medium mb-2">Name</label>
+                  <input 
+                    type="text" 
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                    placeholder="Your full name"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent"
-                    placeholder="your.email@example.com"
+                  <label className="block text-gray-700 font-medium mb-2">Email</label>
+                  <input 
+                    type="email" 
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
+                    placeholder="your@email.com"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">Message</label>
-                  <textarea
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows="5"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-transparent"
+                  <label className="block text-gray-700 font-medium mb-2">Message</label>
+                  <textarea 
+                    rows="4" 
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none"
                     placeholder="Tell us about your project..."
                   ></textarea>
                 </div>
-                <button
-                  onClick={handleSubmit}
-                  className="w-full bg-green-600 text-white px-6 py-4 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+                <button 
+                  className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors font-medium"
                 >
                   Send Message
                 </button>
@@ -314,55 +318,37 @@ text-transparent bg-clip-text font-bold animate-pulse">
             </div>
             
             {/* Contact Info */}
-            <div className="space-y-6 sm:space-y-8">
-              <div className="bg-white p-6 sm:p-8 rounded-xl shadow-lg">
-                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-6">Contact Information</h3>
-                
-                <div className="space-y-4 sm:space-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="bg-green-100 p-3 rounded-lg">
-                      <Mail className="w-6 h-6 text-green-600" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900">Email</p>
-                      <p className="text-gray-600">info@mirdahatech.com.np</p>
-                    </div>
+            <div className="text-white">
+              <div className="mb-8">
+                <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <Mail className="w-5 h-5" />
+                    <span>info@mirdahatech.com.np</span>
                   </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="bg-green-100 p-3 rounded-lg">
-                      <Phone className="w-6 h-6 text-green-600" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900">Phone</p>
-                      <p className="text-gray-600">+977 9867177200</p>
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <Phone className="w-5 h-5" />
+                    <span>+977 9767177200</span>
                   </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="bg-green-100 p-3 rounded-lg">
-                      <MapPin className="w-6 h-6 text-green-600" />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-gray-900">Location</p>
-                      <p className="text-gray-600">Itahari, Nepal</p>
-                    </div>
+                  <div className="flex items-center gap-3">
+                    <MapPin className="w-5 h-5" />
+                    <span>Kathmandu, Nepal</span>
                   </div>
                 </div>
               </div>
               
-              <div className="bg-green-600 p-6 sm:p-8 rounded-xl shadow-lg text-white">
-                <h3 className="text-xl sm:text-2xl font-bold mb-4">Follow Us</h3>
-                <div className="flex gap-4">
-                  <button className="bg-white text-green-600 p-3 rounded-lg hover:bg-gray-100 transition-colors">
-                    <Github className="w-6 h-6" />
-                  </button>
-                  <button className="bg-white text-green-600 p-3 rounded-lg hover:bg-gray-100 transition-colors">
-                    <Linkedin className="w-6 h-6" />
-                  </button>
-                  <button className="bg-white text-green-600 p-3 rounded-lg hover:bg-gray-100 transition-colors">
-                    <Facebook className="w-6 h-6" />
-                  </button>
+              <div>
+                <h4 className="text-lg font-semibold mb-4">Follow Us</h4>
+                <div className="flex space-x-4">
+                  <a href="#" className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors">
+                    <Linkedin className="w-5 h-5" />
+                  </a>
+                  <a href="#" className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors">
+                    <Github className="w-5 h-5" />
+                  </a>
+                  <a href="#" className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors">
+                    <Facebook className="w-5 h-5" />
+                  </a>
                 </div>
               </div>
             </div>
@@ -371,51 +357,48 @@ text-transparent bg-clip-text font-bold animate-pulse">
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12 sm:py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-8 sm:mb-12">
-            <div className="sm:col-span-2 lg:col-span-1">
-              <h3 className="text-xl sm:text-2xl font-bold mb-4">
-                <span className="text-green-400">Mirdaha</span> Technology
-              </h3>
-              <p className="text-gray-400 leading-relaxed">
+      <footer className="bg-gray-900 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+            <div>
+              <div className="text-2xl font-bold text-white mb-4">
+                <span className="text-green-500">Mirdaha</span> Technology
+              </div>
+              <p className="text-gray-400">
                 Innovating technology for a smarter Nepal through research-driven solutions.
               </p>
             </div>
-            
             <div>
-              <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                <li><a href="#home" className="text-gray-400 hover:text-white transition-colors">Home</a></li>
-                <li><a href="#about" className="text-gray-400 hover:text-white transition-colors">About</a></li>
-                <li><a href="#services" className="text-gray-400 hover:text-white transition-colors">Services</a></li>
-                <li><a href="#projects" className="text-gray-400 hover:text-white transition-colors">Projects</a></li>
+              <h4 className="text-white font-semibold mb-4">Quick Links</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#home" className="hover:text-green-500 transition-colors">Home</a></li>
+                <li><a href="#about" className="hover:text-green-500 transition-colors">About</a></li>
+                <li><a href="#services" className="hover:text-green-500 transition-colors">Services</a></li>
+                <li><a href="#projects" className="hover:text-green-500 transition-colors">Projects</a></li>
               </ul>
             </div>
-            
             <div>
-              <h4 className="text-lg font-semibold mb-4">Services</h4>
-              <ul className="space-y-2">
-                <li><span className="text-gray-400">Software Development</span></li>
-                <li><span className="text-gray-400">Research & Data Solutions</span></li>
-                <li><span className="text-gray-400">Cloud & Web Services</span></li>
-                <li><span className="text-gray-400">IT Consulting</span></li>
-                <li><span className="text-gray-400">GIS & Mapping</span></li>
-                <li><span className="text-gray-400">Digital Profile Solutions</span></li>
+              <h4 className="text-white font-semibold mb-4">Services</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>Software Development</li>
+                <li>Research & Data Solutions</li>
+                <li>Cloud & Web Services</li>
+                <li>IT Consulting</li>
               </ul>
             </div>
-            
             <div>
-              <h4 className="text-lg font-semibold mb-4">Contact</h4>
-              <ul className="space-y-2">
-                <li className="text-gray-400">info@mirdahatech.com.np</li>
-                <li className="text-gray-400">Itahari, Nepal</li>
+              <h4 className="text-white font-semibold mb-4">Contact</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li>info@mirdahatech.com.np</li>
+                <li>Kathmandu, Nepal</li>
               </ul>
             </div>
           </div>
           
           <div className="border-t border-gray-800 pt-8 text-center">
-            <p className="text-gray-400">© 2025 Mirdaha Technology | All Rights Reserved</p>
+            <p className="text-gray-400">
+              © 2025 Mirdaha Technology | All Rights Reserved
+            </p>
           </div>
         </div>
       </footer>
@@ -424,3 +407,5 @@ text-transparent bg-clip-text font-bold animate-pulse">
 };
 
 export default Homepage;
+
+ 
